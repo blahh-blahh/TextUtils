@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar(props) {
   return (
@@ -9,9 +9,9 @@ export default function Navbar(props) {
         className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
       >
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <a className="navbar-brand" href="/">
             {props.title}
-          </Link>
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -26,24 +26,43 @@ export default function Navbar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
+                <NavLink className="nav-link active" aria-current="page" to="/home">
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/Contact">
-                  Contact Us
-                </Link>
+                <NavLink className="nav-link active" aria-current="page" to="/about">
+                  About
+                </NavLink>
               </li>
             </ul>
-
+            <div className="gradient">
+              <div className="bg-primary rounded mx-2" 
+              onClick={()=>props.toggleMode('primary')}
+              style={{height:'20px', width:'20px', cursor:'pointer'}}></div>
+            </div>
+            <div className="gradient">
+              <div className="bg-success rounded mx-2" 
+              onClick={()=>props.toggleMode('success')}
+              style={{height:'20px', width:'20px', cursor:'pointer'}}></div>
+            </div>
+            <div className="gradient">
+              <div className="bg-danger rounded mx-2" 
+              onClick={()=>props.toggleMode('danger')}
+              style={{height:'20px', width:'20px', cursor:'pointer'}}></div>
+            </div>
+            <div className="gradient">
+              <div className="bg-warning rounded mx-2" 
+              onClick={()=>props.toggleMode('warning')}
+              style={{height:'20px', width:'20px', cursor:'pointer'}}></div>
+            </div>
             <div className={`form-check form-switch text-${props.mode==='light'?'dark':'light'}`}>
               <input
                 className="form-check-input"
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckDefault"
-                onClick={props.toggleMode}
+                onClick={()=>props.toggleMode('')}
               />
               <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
                 Enable Dark Mode
